@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #6a994e;
+  --color-primary-dark: #386641;
+  --color-dark: #2b2d42;
+  --color-light: #8d99ae;
+  --color-bglight: #f8f9fa;
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans bg-bglight text-dark antialiased;
+  }
+
+  /* This ensures that anchor links don't hide under the fixed navbar */
+  section, div[id] {
+    scroll-margin-top: 90px;
+  }
+  
+  /* Hide scrollbar for the horizontal scrolling menu on mobile */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply font-semibold text-dark hover:text-primary transition-colors flex items-center gap-2 py-2 relative;
+  }
+  .nav-link.active {
+    @apply text-primary;
+  }
+  .nav-link.active::after {
+    content: '';
+    @apply absolute -bottom-[32px] left-0 w-full h-1 bg-primary rounded-t-md;
+  }
+}
